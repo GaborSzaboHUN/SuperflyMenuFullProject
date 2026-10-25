@@ -1,5 +1,6 @@
 import React from "react";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
+import "./Login.css";
 
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
 
@@ -23,8 +24,8 @@ const Login = ({ onLoginSuccess }) => {
     };
 
     return (
-        <div className="container mt-5" style={{ maxWidth: '450px' }}>
-            <div className="card shadow-sm border-0">
+        <div className="container dvh-100 w-100 align-items-center justify-content-center d-flex">
+            <div className="card shadow-sm border-0" style={{ maxWidth: '450px' }}>
                 <div className="card-body p-4 text-center">
                     <h3 className="card-title mb-3 fw-bold">Superfly Admin</h3>
                     <p className="text-muted mb-4">
