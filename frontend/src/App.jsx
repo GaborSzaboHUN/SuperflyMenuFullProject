@@ -25,35 +25,34 @@ const App = () => {
     };
 
     // - - - - - - WHEN THE ADMIN LOGGED IN, FETCH THE MENU FROM BACKEND
-
     useEffect(() => {
         if (isAdmin) {
             fetchMenu();
         }
     }, [isAdmin]);
 
-    // Sikeres bejelentkezés a Login komponensből
+    // - - - - - - LOGIN COMPONENT - SUCCESS HANDLER
     const handleLoginSuccess = (userData) => {
         setUser(userData);
         setIsAdmin(true);
     };
 
-    // Kijelentkezés
+    // - - - - - - LOGOUT HANDLER
     const handleLogout = () => {
         setUser(null);
         setIsAdmin(false);
         setCategories([]);
     };
 
-    // Ha még nem lépett be adminként, csak a Login komponenst mutatjuk
+    // - - - - - - RENDERING THE LOGIN COMPONENT IF NOT ADMIN
     if (!isAdmin) {
         return <Login onLoginSuccess={handleLoginSuccess} />;
     }
 
-    // Ha sikeres az admin belépés, megjelenítjük a Bootstrap-es Vezérlőpultot
+    // - - - - - - RENDERING THE ADMIN PANEL WITH MENU CATEGORIES AND ITEMS
     return (
         <div className="container my-5">
-            {/* Fejléc sáv */}
+            {/* - - - - - - HEADER SECTION */}
             <div className="d-flex justify-content-between align-items-center mb-4 p-3 bg-light rounded shadow-sm">
                 <div>
                     <h4 className="m-0 fw-bold">Superfly Admin Panel</h4>
@@ -64,7 +63,7 @@ const App = () => {
                 </button>
             </div>
 
-            {/* Betöltés jelző */}
+            {/* - - - - - - LOADING*/}
             {loading && (
                 <div className="text-center my-5">
                     <div className="spinner-border text-primary" role="status">
@@ -73,18 +72,18 @@ const App = () => {
                 </div>
             )}
 
-            {/* Kategóriák és ételek áttekintő listája */}
+            {/* - - - - - - CATEGORIES AND ITEMS LIST */}
             {!loading && categories.length > 0 && (
                 <div className="row">
-                    {categories.map((cat) => (
-                        <div key={cat.id} className="col-12 mb-4">
+                    {categories.map((category) => (
+                        <div key={category.id} className="col-12 mb-4">
                             <div className="card shadow-sm">
                                 <div className="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                                    <h5 className="m-0">{cat.name.hu} <small className="text-white-50">({cat.name.en})</small></h5>
+                                    <h5 className="m-0">{category.name.hu} <small className="text-white-50">({category.name.en})</small></h5>
                                 </div>
                                 <div className="card-body p-0">
                                     <ul className="list-group list-group-flush">
-                                        {cat.items.map((item) => (
+                                        {category.items.map((item) => (
                                             <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center p-3">
                                                 <div>
                                                     <h6 className="m-0 fw-bold">{item.name.hu} <small className="text-muted">({item.name.en})</small></h6>
