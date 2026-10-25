@@ -1,226 +1,424 @@
-[
-    {
-      "id": "colds-1",
-      "category": "colds",
-      "name": { "hu": "Jégkása", "en": "Slushy" },
-      "varieties": { "hu": "korlátlan", "en": "unlimited" },
-      "price": 1500
-    },
-    {
-      "id": "colds-2",
-      "category": "colds",
-      "name": { "hu": "Fagyi", "en": "Ice-cream" },
-      "varieties": { "hu": "szezonális", "en": "seasonal" },
-      "price": 650
-    },
-    {
-      "id": "colds-3",
-      "category": "colds",
-      "name": { "hu": "Öntet", "en": "Dressing" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 200
-    },
-    {
-      "id": "foods-1",
-      "category": "foods",
-      "name": { "hu": "Pizza", "en": "Pizza" },
-      "varieties": { "hu": "Margherita", "en": "Margherita" },
-      "price": 2650
-    },
-    {
-      "id": "foods-2",
-      "category": "foods",
-      "name": { "hu": "Pizza", "en": "Pizza" },
-      "varieties": { "hu": "Sonkás / szalámis / baconös", "en": "Ham / salami / bacon" },
-      "price": 2950
-    },
-    {
-      "id": "foods-3",
-      "category": "foods",
-      "name": { "hu": "Lepény", "en": "Pie" },
-      "varieties": { "hu": "Sült csirkemell-sonkás / Paradicsomos-mozzarellás / Chilis-marhahúsos", "en": "Chicken breast-ham / Tomato-mozzarella / Beef-chili" },
-      "price": 2100
-    },
-    {
-      "id": "foods-4",
-      "category": "foods",
-      "name": { "hu": "Nachos", "en": "Nachos" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 1200
-    },
-    {
-      "id": "foods-5",
-      "category": "foods",
-      "name": { "hu": "Croissant", "en": "Croissant" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 600
-    },
-    {
-      "id": "foods-6",
-      "category": "foods",
-      "name": { "hu": "Chips", "en": "Chips" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 800
-    },
-    {
-      "id": "foods-7",
-      "category": "foods",
-      "name": { "hu": "Stickletti", "en": "Stickletti" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 650
-    },
-    {
-      "id": "foods-8",
-      "category": "foods",
-      "name": { "hu": "Muffin", "en": "Muffin" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 750
-    },
-    {
-      "id": "foods-9",
-      "category": "foods",
-      "name": { "hu": "Fánk", "en": "Doughnut" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 500
-    },
-    {
-      "id": "foods-10",
-      "category": "foods",
-      "name": { "hu": "Csoki", "en": "Chocolate" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 450
-    },
-    {
-      "id": "foods-11",
-      "category": "foods",
-      "name": { "hu": "Nyalóka", "en": "Lollipop" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 200
-    },
-    {
-      "id": "hotDrinks-1",
-      "category": "hotDrinks",
-      "name": { "hu": "Espresso", "en": "Espresso" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 650
-    },
-    {
-      "id": "hotDrinks-2",
-      "category": "hotDrinks",
-      "name": { "hu": "Hosszú kávé", "en": "Long coffee" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 650
-    },
-    {
-      "id": "hotDrinks-3",
-      "category": "hotDrinks",
-      "name": { "hu": "Dupla espresso", "en": "Double espresso" },
-      "varieties": { "hu": "Doppio", "en": "Doppio" },
-      "price": 950
-    },
-    {
-      "id": "hotDrinks-4",
-      "category": "hotDrinks",
-      "name": { "hu": "Cappuccino", "en": "Cappuccino" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 950
-    },
-    {
-      "id": "hotDrinks-5",
-      "category": "hotDrinks",
-      "name": { "hu": "Tejes kávé", "en": "Coffee latte" },
-      "varieties": { "hu": "Latte", "en": "" },
-      "price": 950
-    },
-    {
-      "id": "hotDrinks-6",
-      "category": "hotDrinks",
-      "name": { "hu": "Latte macchiato", "en": "Latte macchiato" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 1050
-    },
-    {
-      "id": "hotDrinks-7",
-      "category": "hotDrinks",
-      "name": { "hu": "Affogato", "en": "Affogato" },
-      "varieties": { "hu": "szezonális", "en": "seasonal" },
-      "price": 850
-    },
-    {
-      "id": "hotDrinks-8",
-      "category": "hotDrinks",
-      "name": { "hu": "Jegeskávé", "en": "Ice-cream coffee" },
-      "varieties": { "hu": "szezonális", "en": "seasonal" },
-      "price": 1350
-    },
-    {
-      "id": "hotDrinks-9",
-      "category": "hotDrinks",
-      "name": { "hu": "Forrócsoki", "en": "Hot chocolate" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 950
-    },
-    {
-      "id": "hotDrinks-10",
-      "category": "hotDrinks",
-      "name": { "hu": "Tea", "en": "Tea" },
-      "varieties": { "hu": "", "en": "" },
-      "price": 650
-    },
-    {
-      "id": "hotDrinks-11",
-      "category": "hotDrinks",
-      "name": { "hu": "Növényi tej", "en": "Plant-based milk" },
-      "varieties": { "hu": "extra", "en": "extra" },
-      "price": 200
-    },
-    {
-      "id": "softDrinks-1",
-      "category": "softDrinks",
-      "name": { "hu": "Szénsavas üdítők", "en": "Soft drinks" },
-      "varieties": { "hu": "0,25l", "en": "0,25l" },
-      "price": 700
-    },
-    {
-      "id": "softDrinks-2",
-      "category": "softDrinks",
-      "name": { "hu": "Fritz", "en": "Fritz" },
-      "varieties": { "hu": "0,33l", "en": "0,33l" },
-      "price": 1100
-    },
-    {
-      "id": "softDrinks-3",
-      "category": "softDrinks",
-      "name": { "hu": "Viwa", "en": "Viwa" },
-      "varieties": { "hu": "0,6l", "en": "0,6l" },
-      "price": 750
-    },
-    {
-      "id": "softDrinks-4",
-      "category": "softDrinks",
-      "name": { "hu": "Lipton", "en": "Lipton" },
-      "varieties": { "hu": "0,25l", "en": "0,25l" },
-      "price": 700
-    },
-    {
-      "id": "softDrinks-5",
-      "category": "softDrinks",
-      "name": { "hu": "Toma gyümölcslevek", "en": "Toma fruit juices" },
-      "varieties": { "hu": "0,25l", "en": "0,25l" },
-      "price": 700
-    },
-    {
-      "id": "softDrinks-6",
-      "category": "softDrinks",
-      "name": { "hu": "Víz", "en": "Water" },
-      "varieties": { "hu": "Kis üveges 0,33l", "en": "Small bottle 0,33l" },
-      "price": 500
-    },
-    {
-      "id": "softDrinks-7",
-      "category": "softDrinks",
-      "name": { "hu": "Víz", "en": "Water" },
-      "varieties": { "hu": "Nagy üveges 0,75l", "en": "Big bottle 0,75l" },
-      "price": 750
-    }
-  ]
+{
+    "categories": [
+        {
+            "id": "colds",
+            "name": {
+                "hu": "Hűsítők",
+                "en": "Cold Treats"
+            },
+            "items": [
+                {
+                    "id": "colds-1",
+                    "name": {
+                        "hu": "Jégkása",
+                        "en": "Slushy"
+                    },
+                    "varieties": {
+                        "hu": "korlátlan",
+                        "en": "unlimited"
+                    },
+                    "price": 1500
+                },
+                {
+                    "id": "colds-2",
+                    "name": {
+                        "hu": "Fagyi",
+                        "en": "Ice-cream"
+                    },
+                    "varieties": {
+                        "hu": "szezonális",
+                        "en": "seasonal"
+                    },
+                    "price": 650
+                },
+                {
+                    "id": "colds-3",
+                    "name": {
+                        "hu": "Öntet",
+                        "en": "Dressing"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 200
+                }
+            ]
+        },
+        {
+            "id": "foods",
+            "name": {
+                "hu": "Ételek",
+                "en": "Foods"
+            },
+            "items": [
+                {
+                    "id": "foods-1",
+                    "name": {
+                        "hu": "Pizza",
+                        "en": "Pizza"
+                    },
+                    "varieties": {
+                        "hu": "Margherita",
+                        "en": "Margherita"
+                    },
+                    "price": 2650
+                },
+                {
+                    "id": "foods-2",
+                    "name": {
+                        "hu": "Pizza",
+                        "en": "Pizza"
+                    },
+                    "varieties": {
+                        "hu": "Sonkás / szalámis / baconös",
+                        "en": "Ham / salami / bacon"
+                    },
+                    "price": 2950
+                },
+                {
+                    "id": "foods-3",
+                    "name": {
+                        "hu": "Lepény",
+                        "en": "Pie"
+                    },
+                    "varieties": {
+                        "hu": "Sült csirkemell-sonkás / Paradicsomos-mozzarellás / Chilis-marhahúsos",
+                        "en": "Chicken breast-ham / Tomato-mozzarella / Beef-chili"
+                    },
+                    "price": 2100
+                },
+                {
+                    "id": "foods-4",
+                    "name": {
+                        "hu": "Nachos",
+                        "en": "Nachos"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 1200
+                },
+                {
+                    "id": "foods-5",
+                    "name": {
+                        "hu": "Croissant",
+                        "en": "Croissant"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 600
+                },
+                {
+                    "id": "foods-6",
+                    "name": {
+                        "hu": "Chips",
+                        "en": "Chips"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 800
+                },
+                {
+                    "id": "foods-7",
+                    "name": {
+                        "hu": "Stickletti",
+                        "en": "Stickletti"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 650
+                },
+                {
+                    "id": "foods-8",
+                    "name": {
+                        "hu": "Muffin",
+                        "en": "Muffin"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 750
+                },
+                {
+                    "id": "foods-9",
+                    "name": {
+                        "hu": "Fánk",
+                        "en": "Doughnut"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 500
+                },
+                {
+                    "id": "foods-10",
+                    "name": {
+                        "hu": "Csoki",
+                        "en": "Chocolate"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 450
+                },
+                {
+                    "id": "foods-11",
+                    "name": {
+                        "hu": "Nyalóka",
+                        "en": "Lollipop"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 200
+                }
+            ]
+        },
+        {
+            "id": "hotDrinks",
+            "name": {
+                "hu": "Meleg italok",
+                "en": "Hot Drinks"
+            },
+            "items": [
+                {
+                    "id": "hotDrinks-1",
+                    "name": {
+                        "hu": "Espresso",
+                        "en": "Espresso"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 650
+                },
+                {
+                    "id": "hotDrinks-2",
+                    "name": {
+                        "hu": "Hosszú kávé",
+                        "en": "Long coffee"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 650
+                },
+                {
+                    "id": "hotDrinks-3",
+                    "name": {
+                        "hu": "Dupla espresso",
+                        "en": "Double espresso"
+                    },
+                    "varieties": {
+                        "hu": "Doppio",
+                        "en": "Doppio"
+                    },
+                    "price": 950
+                },
+                {
+                    "id": "hotDrinks-4",
+                    "name": {
+                        "hu": "Cappuccino",
+                        "en": "Cappuccino"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 950
+                },
+                {
+                    "id": "hotDrinks-5",
+                    "name": {
+                        "hu": "Tejes kávé",
+                        "en": "Coffee latte"
+                    },
+                    "varieties": {
+                        "hu": "Latte",
+                        "en": ""
+                    },
+                    "price": 950
+                },
+                {
+                    "id": "hotDrinks-6",
+                    "name": {
+                        "hu": "Latte macchiato",
+                        "en": "Latte macchiato"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 1050
+                },
+                {
+                    "id": "hotDrinks-7",
+                    "name": {
+                        "hu": "Affogato",
+                        "en": "Affogato"
+                    },
+                    "varieties": {
+                        "hu": "szezonális",
+                        "en": "seasonal"
+                    },
+                    "price": 850
+                },
+                {
+                    "id": "hotDrinks-8",
+                    "name": {
+                        "hu": "Jegeskávé",
+                        "en": "Ice-cream coffee"
+                    },
+                    "varieties": {
+                        "hu": "szezonális",
+                        "en": "seasonal"
+                    },
+                    "price": 1350
+                },
+                {
+                    "id": "hotDrinks-9",
+                    "name": {
+                        "hu": "Forrócsoki",
+                        "en": "Hot chocolate"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 950
+                },
+                {
+                    "id": "hotDrinks-10",
+                    "name": {
+                        "hu": "Tea",
+                        "en": "Tea"
+                    },
+                    "varieties": {
+                        "hu": "",
+                        "en": ""
+                    },
+                    "price": 650
+                },
+                {
+                    "id": "hotDrinks-11",
+                    "name": {
+                        "hu": "Növényi tej",
+                        "en": "Plant-based milk"
+                    },
+                    "varieties": {
+                        "hu": "extra",
+                        "en": "extra"
+                    },
+                    "price": 200
+                }
+            ]
+        },
+        {
+            "id": "softDrinks",
+            "name": {
+                "hu": "Üdítők",
+                "en": "Soft Drinks"
+            },
+            "items": [
+                {
+                    "id": "softDrinks-1",
+                    "name": {
+                        "hu": "Szénsavas üdítők",
+                        "en": "Soft drinks"
+                    },
+                    "varieties": {
+                        "hu": "0,25l",
+                        "en": "0,25l"
+                    },
+                    "price": 700
+                },
+                {
+                    "id": "softDrinks-2",
+                    "name": {
+                        "hu": "Fritz",
+                        "en": "Fritz"
+                    },
+                    "varieties": {
+                        "hu": "0,33l",
+                        "en": "0,33l"
+                    },
+                    "price": 1100
+                },
+                {
+                    "id": "softDrinks-3",
+                    "name": {
+                        "hu": "Viwa",
+                        "en": "Viwa"
+                    },
+                    "varieties": {
+                        "hu": "0,6l",
+                        "en": "0,6l"
+                    },
+                    "price": 750
+                },
+                {
+                    "id": "softDrinks-4",
+                    "name": {
+                        "hu": "Lipton",
+                        "en": "Lipton"
+                    },
+                    "varieties": {
+                        "hu": "0,25l",
+                        "en": "0,25l"
+                    },
+                    "price": 700
+                },
+                {
+                    "id": "softDrinks-5",
+                    "name": {
+                        "hu": "Toma gyümölcslevek",
+                        "en": "Toma fruit juices"
+                    },
+                    "varieties": {
+                        "hu": "0,25l",
+                        "en": "0,25l"
+                    },
+                    "price": 700
+                },
+                {
+                    "id": "softDrinks-6",
+                    "name": {
+                        "hu": "Víz",
+                        "en": "Water"
+                    },
+                    "varieties": {
+                        "hu": "Kis üveges 0,33l",
+                        "en": "Small bottle 0,33l"
+                    },
+                    "price": 500
+                },
+                {
+                    "id": "softDrinks-7",
+                    "name": {
+                        "hu": "Víz",
+                        "en": "Water"
+                    },
+                    "varieties": {
+                        "hu": "Nagy üveges 0,75l",
+                        "en": "Big bottle 0,75l"
+                    },
+                    "price": 750
+                }
+            ]
+        }
+    ]
+}
