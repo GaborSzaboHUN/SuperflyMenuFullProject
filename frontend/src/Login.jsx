@@ -1,6 +1,5 @@
 import React from "react";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
-import "./Login.css";
 
 const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
 
@@ -24,22 +23,14 @@ const Login = ({ onLoginSuccess }) => {
     };
 
     return (
-        <div className="container dvh-100 w-100 align-items-center justify-content-center d-flex">
-            <div className="card shadow-sm border-0" style={{ maxWidth: '450px' }}>
-                <div className="card-body p-4 text-center">
-                    <h3 className="card-title mb-3 fw-bold">Superfly Admin</h3>
-                    <p className="text-muted mb-4">
-                        A folytatáshoz kérjük, jelentkezz be az adminisztrátori Google-fiókoddal!
-                    </p>
-                    <div className="d-flex justify-content-center">
-                        <GoogleLogin
-                            onSuccess={handleSuccess}
-                            onError={() => console.log("Login Failed")}
-                        />
-                    </div>
-                </div>
-            </div>
-        </div>
+        <main>
+            <h1>SkyLounge - ADMIN</h1>
+            <p>A folytatáshoz kérjük, jelentkezz be az adminisztrátori Google-fiókoddal!</p>
+            <GoogleLogin
+                onSuccess={handleSuccess}
+                onError={() => console.log("Login Failed")}
+            />
+        </main>
     );
 };
 
