@@ -7,7 +7,7 @@ const App = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(false);
-
+    const [editingItemId, setEditingItemId] = useState(null);
 
 
     // - - - - - - LOADING MENU FROM BACKEND WHEN ADMIN LOGGED IN
@@ -69,6 +69,7 @@ const App = () => {
         setToken(null);
         setIsAdmin(false);
         setCategories([]);
+        setEditingItemId(null);
     };
 
     // - - - - - - TEMPORARY TEST: does the backend accept our token?
@@ -87,6 +88,12 @@ const App = () => {
             alert("Hiba: " + error.message);
         }
     };
+
+    // - - - - - - SET EDITING ITEM ID
+
+    const handleEditingItemId = (id) => {
+        setEditingItemId(id);
+    }
 
     // - - - - - - RENDERING THE LOGIN COMPONENT IF NOT ADMIN
     if (!isAdmin) {
@@ -113,15 +120,25 @@ const App = () => {
                 <section key={category.id}>
                     <h2>{category.name.hu} ({category.name.en})</h2>
                     <ul>
-                        {category.items.map((item) => (
-                            <li key={item.id}>
-                                <strong>{item.name.hu}</strong> ({item.name.en})
-                                {(item.varieties.hu || item.varieties.en) && (
-                                    <span> – {item.varieties.hu} / {item.varieties.en}</span>
-                                )}
-                                {" – "}{item.price} Ft
-                            </li>
-                        ))}
+                        {category.items.map((item) => {
+                            const isEdited = editingItemId === item.id;
+
+                            return (
+                                <li key={item.id}>
+                                    <label htmlFor={`${item.id}-name-hu`}>Név (HU)</label>
+                                    <input id={`${item.id}-name-hu`} type="text" value={item.name.hu} readOnly={!isEdited} />
+                                    <label htmlFor={`${item.id}-name-en`}>Név (EN)</label>
+                                    <input id={`${item.id}-name-en`} type="text" value={item.name.en} readOnly={!isEdited} />
+                                    <label htmlFor={`${item.id}-varieties-hu`}>Variációk (HU)</label>
+                                    <input id={`${item.id}-varieties-hu`} type="text" value={item.varieties.hu} readOnly={!isEdited} />
+                                    <label htmlFor={`${item.id}-varieties-en`}>Variációk (EN)</label>
+                                    <input id={`${item.id}-varieties-en`} type="text" value={item.varieties.en} readOnly={!isEdited} />
+                                    <label htmlFor={`${item.id}-price`}>Ár</label>
+                                    <input id={`${item.id}-price`} type="number" value={item.price} readOnly={!isEdited} />
+                                    <button type="button" onClick={() => { isEdited ? handleEditingItemId(null) : handleEditingItemId(item.id) }}>{isEdited ? 'Mentés' : 'Szerkesztés'}</button>
+                                </li>
+                            )
+                        })}
                     </ul>
                 </section>
             ))}

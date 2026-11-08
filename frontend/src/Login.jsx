@@ -16,8 +16,6 @@ const Login = ({ onLoginSuccess }) => {
             const bytes = Uint8Array.from(binaryString, (char) => char.charCodeAt(0));
             const decodedPayload = JSON.parse(new TextDecoder().decode(bytes));
 
-            console.log('Login.jsx - decodedPayload:', decodedPayload);
-
             if (ADMIN_EMAILS.includes(decodedPayload.email)) {
                 // 1. param: user data (name, email) - for display
                 // 2. param: the raw token - we will send this to the backend
