@@ -11,6 +11,12 @@ const DATA_FILE = path.join(__dirname, 'data.json');
 
 const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
+// .env:   ADMIN_EMAILS=first@gmail.com,second@gmail.com   (one string)
+// result: ["first@gmail.com", "second@gmail.com"]          (a list)
+const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || '')
+    .split(',')
+    .map(email => email.trim());
+
 app.use(cors());
 app.use(express.json());
 
@@ -42,8 +48,8 @@ const authenticateAdmin = async (req, res, next) => {
 
         const payload = ticket.getPayload();
 
-        // Check if the user email matches the allowed admin email
-        if (payload.email !== process.env.ADMIN_EMAIL) {
+        // Check if the user email is on the admin list
+        if (!ADMIN_EMAILS.includes(payload.email)) {
             return res.status(403).json({ message: 'Forbidden: You are not authorized as an admin' });
         }
 

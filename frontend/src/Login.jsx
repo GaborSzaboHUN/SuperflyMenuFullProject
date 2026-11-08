@@ -1,7 +1,11 @@
 import React from "react";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 
-const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
+// .env:   VITE_ADMIN_EMAILS=first@gmail.com,second@gmail.com   (one string)
+// result: ["first@gmail.com", "second@gmail.com"]               (a list)
+const ADMIN_EMAILS = (import.meta.env.VITE_ADMIN_EMAILS || "")
+    .split(",")
+    .map((email) => email.trim());
 
 const Login = ({ onLoginSuccess }) => {
     const handleSuccess = (credentialResponse) => {
@@ -16,7 +20,7 @@ const Login = ({ onLoginSuccess }) => {
 
             console.log('Login.jsx - decodedPayload:', decodedPayload);
 
-            if (decodedPayload.email === ADMIN_EMAIL) {
+            if (ADMIN_EMAILS.includes(decodedPayload.email)) {
                 // 1. param: user data (name, email) - for display
                 // 2. param: the raw token - we will send this to the backend
                 onLoginSuccess(decodedPayload, credentialResponse.credential);
