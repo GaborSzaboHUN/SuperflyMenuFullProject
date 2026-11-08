@@ -9,8 +9,6 @@ const ADMIN_EMAILS = (import.meta.env.VITE_ADMIN_EMAILS || "")
 
 const Login = ({ onLoginSuccess }) => {
     const handleSuccess = (credentialResponse) => {
-        console.log('Login.jsx - credentialResponse:', credentialResponse);
-        console.log('Login.jsx - credentialResponse credential:' , credentialResponse.credential.split('.')[1]);
 
         try {
             const payloadBase64 = credentialResponse.credential.split('.')[1];
