@@ -19,7 +19,7 @@ app.use(express.json());
 // - - - - - - HELPER FUNCTIONS TO READ AND WRITE DATA
 
 const readData = () => JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
-const writeData = (data) => fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
+const writeData = (data) => fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 4), 'utf8');
 
 
 

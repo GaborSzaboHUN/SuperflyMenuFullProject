@@ -5,14 +5,21 @@ const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL;
 
 const Login = ({ onLoginSuccess }) => {
     const handleSuccess = (credentialResponse) => {
+        console.log('Login.jsx - credentialResponse:', credentialResponse);
+        console.log('Login.jsx - credentialResponse credential:' , credentialResponse.credential.split('.')[1]);
+
         try {
             const payloadBase64 = credentialResponse.credential.split('.')[1];
             const binaryString = atob(payloadBase64);
             const bytes = Uint8Array.from(binaryString, (char) => char.charCodeAt(0));
             const decodedPayload = JSON.parse(new TextDecoder().decode(bytes));
 
+            console.log('Login.jsx - decodedPayload:', decodedPayload);
+
             if (decodedPayload.email === ADMIN_EMAIL) {
-                onLoginSuccess(decodedPayload);
+                // 1. param: user data (name, email) - for display
+                // 2. param: the raw token - we will send this to the backend
+                onLoginSuccess(decodedPayload, credentialResponse.credential);
             } else {
                 alert("You are not authorized to access this admin panel.");
                 googleLogout();
