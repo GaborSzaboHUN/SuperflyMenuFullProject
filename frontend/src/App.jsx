@@ -93,7 +93,6 @@ const App = () => {
         return <Login onLoginSuccess={handleLoginSuccess} />;
     }
 
-    console.log('App.jsx - token', token)
     // - - - - - - RENDERING THE ADMIN PANEL WITH MENU CATEGORIES AND ITEMS
     return (
         <main>
