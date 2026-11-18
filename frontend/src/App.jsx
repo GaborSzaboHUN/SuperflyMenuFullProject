@@ -8,6 +8,7 @@ const App = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(false);
     const [editingItemId, setEditingItemId] = useState(null);
+    const [draft, setDraft] = useState(null);
 
 
     // - - - - - - LOADING MENU FROM BACKEND WHEN ADMIN LOGGED IN
@@ -70,6 +71,7 @@ const App = () => {
         setIsAdmin(false);
         setCategories([]);
         setEditingItemId(null);
+        setDraft(null);
     };
 
     // - - - - - - TEMPORARY TEST: does the backend accept our token?
@@ -89,16 +91,39 @@ const App = () => {
         }
     };
 
-    // - - - - - - SET EDITING ITEM ID
+    // - - - - - - START / END EDITING
+    const startEditing = (item) => {
+        setEditingItemId(item.id);
+        setDraft({...item});
+    }
 
-    const handleEditingItemId = (id) => {
-        setEditingItemId(id);
+    const endEditing = () =>{
+        setEditingItemId(null);
+        setDraft(null);
+    }
+
+    const handlePriceChange = (e) => {
+        setDraft({
+            ...draft, 
+            price: e.target.value.length > 0 ? parseInt(e.target.value) : ''
+        });
+    }
+
+    const handleTextChange = (e, field, lang) => {
+        setDraft({
+            ...draft,
+            [field]: {
+                ...draft[field],
+                [lang]: e.target.value
+            }
+        })
     }
 
     // - - - - - - RENDERING THE LOGIN COMPONENT IF NOT ADMIN
     if (!isAdmin) {
         return <Login onLoginSuccess={handleLoginSuccess} />;
     }
+    console.log("draft:", draft);
 
     // - - - - - - RENDERING THE ADMIN PANEL WITH MENU CATEGORIES AND ITEMS
     return (
@@ -122,20 +147,58 @@ const App = () => {
                     <ul>
                         {category.items.map((item) => {
                             const isEdited = editingItemId === item.id;
+                            const valueSource = isEdited ? draft : item;
 
                             return (
                                 <li key={item.id}>
                                     <label htmlFor={`${item.id}-name-hu`}>Név (HU)</label>
-                                    <input id={`${item.id}-name-hu`} type="text" value={item.name.hu} readOnly={!isEdited} />
+                                    <input
+                                        id={`${item.id}-name-hu`}
+                                        type="text"
+                                        value={valueSource.name.hu}
+                                        readOnly={!isEdited}
+                                        onChange={(e) => handleTextChange(e, 'name', 'hu')}
+                                    />
                                     <label htmlFor={`${item.id}-name-en`}>Név (EN)</label>
-                                    <input id={`${item.id}-name-en`} type="text" value={item.name.en} readOnly={!isEdited} />
+                                    <input
+                                        id={`${item.id}-name-en`}
+                                        type="text"
+                                        value={valueSource.name.en}
+                                        readOnly={!isEdited}
+                                        onChange={(e) => handleTextChange(e, 'name', 'en')}
+                                    />
                                     <label htmlFor={`${item.id}-varieties-hu`}>Variációk (HU)</label>
-                                    <input id={`${item.id}-varieties-hu`} type="text" value={item.varieties.hu} readOnly={!isEdited} />
+                                    <input
+                                        id={`${item.id}-varieties-hu`}
+                                        type="text"
+                                        value={valueSource.varieties.hu}
+                                        readOnly={!isEdited}
+                                        onChange={(e) => handleTextChange(e, 'varieties', 'hu')}
+                                    />
                                     <label htmlFor={`${item.id}-varieties-en`}>Variációk (EN)</label>
-                                    <input id={`${item.id}-varieties-en`} type="text" value={item.varieties.en} readOnly={!isEdited} />
+                                    <input
+                                        id={`${item.id}-varieties-en`}
+                                        type="text"
+                                        value={valueSource.varieties.en}
+                                        readOnly={!isEdited}
+                                        onChange={(e) => handleTextChange(e, 'varieties', 'en')}
+                                    />
                                     <label htmlFor={`${item.id}-price`}>Ár</label>
-                                    <input id={`${item.id}-price`} type="number" value={item.price} readOnly={!isEdited} />
-                                    <button type="button" onClick={() => { isEdited ? handleEditingItemId(null) : handleEditingItemId(item.id) }}>{isEdited ? 'Mentés' : 'Szerkesztés'}</button>
+                                    <input
+                                        id={`${item.id}-price`}
+                                        type="number"
+                                        value={valueSource.price}
+                                        readOnly={!isEdited}
+                                        onChange={handlePriceChange}
+                                    />
+                                    <button 
+                                        type="button" 
+                                        onClick={() => { isEdited 
+                                            ? endEditing() 
+                                            : startEditing(item) }}>{isEdited 
+                                                ? 'Mentés' 
+                                                : 'Szerkesztés'}
+                                    </button>
                                 </li>
                             )
                         })}
