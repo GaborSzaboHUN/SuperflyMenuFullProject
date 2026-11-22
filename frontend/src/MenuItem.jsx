@@ -8,7 +8,9 @@ const MenuItem = ({
     handlePriceChange,
     startEditing,
     handleSave,
+    handleToggleVisible,
 }) => {
+    console.log(item);
     const isEdited = editingItemId === item.id;
     const valueSource = isEdited ? draft : item;
 
@@ -61,6 +63,13 @@ const MenuItem = ({
                     : startEditing(item) }}>{isEdited 
                         ? 'Mentés' 
                         : 'Szerkesztés'}
+            </button>
+            <button 
+                type="button" 
+                onClick={() => handleToggleVisible()}
+                disabled={isEdited}
+            >
+                {item.visible ? 'Elrejtés' : 'Megjelenítés'}
             </button>
         </li>
     );

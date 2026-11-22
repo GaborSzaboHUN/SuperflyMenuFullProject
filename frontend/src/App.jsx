@@ -10,6 +10,7 @@ const App = () => {
     const [loading, setLoading] = useState(false);
     const [editingItemId, setEditingItemId] = useState(null);
     const [draft, setDraft] = useState(null);
+    const [message, setMessage] = useState(null);
 
 
 
@@ -80,6 +81,7 @@ const App = () => {
         setCategories([]);
         setEditingItemId(null);
         setDraft(null);
+        setMessage(null);
     };
 
 
@@ -103,7 +105,7 @@ const App = () => {
 
         try {
             await sendAdminRequest(
-                "PUT",
+                "PATCH",
                 `/api/categories/${categoryId}/items/${draft.id}`,
                 draft
             );
@@ -137,6 +139,32 @@ const App = () => {
 
 
 
+    const handleToggleVisible = async (categoryId, item) => {
+        try {
+            await sendAdminRequest(
+                "PATCH",
+                `/api/categories/${categoryId}/items/${item.id}`,
+                { visible: !item.visible }
+            )
+            fetchMenu();
+
+            setMessage( item.visible 
+                ? `${item.name.hu} elrejtve.` 
+                : `${item.name.hu} megjelenítve.`
+            );
+
+            setTimeout(() => {
+                setMessage(null);
+            }, 3000); 
+
+        } catch (error) {
+            console.error("Hiba a láthatóság váltásakor:", error.message);
+            alert("Nem sikerült váltani a láthatóságot. Ha régen jelentkeztél be, lépj ki és be újra.");
+        }
+    }
+
+
+
     // - - - - - - RENDERING THE LOGIN COMPONENT IF NOT ADMIN
     if (!isAdmin) {
         return <Login onLoginSuccess={handleLoginSuccess} />;
@@ -153,6 +181,9 @@ const App = () => {
                 <p>Szia, <strong>{user?.name}</strong>!</p>
                 <button onClick={handleLogout}>Kijelentkezés</button>
             </header>
+
+            {/* - - - - - - VISIBILITY CHANGE */}
+            {message && <p>{message}</p>}
 
             {/* - - - - - - LOADING */}
             {loading && <p>Betöltés...</p>}
@@ -175,6 +206,7 @@ const App = () => {
                                     handlePriceChange={handlePriceChange}
                                     startEditing={startEditing}
                                     handleSave={() => handleSave(category.id)}
+                                    handleToggleVisible={() => handleToggleVisible(category.id, item)}
                                 />
                             )
                         })}

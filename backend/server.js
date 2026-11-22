@@ -98,9 +98,9 @@ app.post('/api/categories/:categoryId/items', authenticateAdmin, (req, res) => {
     res.status(201).json(newItem);
 });
 
-// - - - - - - 3. UPDATE (PUT) - Update an existing item in a category (Admin only)
+// - - - - - - 3. UPDATE (PATCH) - Update an existing item in a category (Admin only)
 
-app.put('/api/categories/:categoryId/items/:itemId', authenticateAdmin, (req, res) => {
+app.patch('/api/categories/:categoryId/items/:itemId', authenticateAdmin, (req, res) => {
     const menu = readData();
     const category = findCategory(menu, req.params.categoryId);
     const item = category?.items.find(item => item.id === req.params.itemId);
