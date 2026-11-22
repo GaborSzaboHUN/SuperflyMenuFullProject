@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login";
+import MenuItem from "./MenuItem";
 
 const App = () => {
     const [user, setUser] = useState(null);
@@ -163,60 +164,18 @@ const App = () => {
                     <h2>{category.name.hu} ({category.name.en})</h2>
                     <ul>
                         {category.items.map((item) => {
-                            const isEdited = editingItemId === item.id;
-                            const valueSource = isEdited ? draft : item;
 
                             return (
-                                <li key={item.id}>
-                                    <label htmlFor={`${item.id}-name-hu`}>Név (HU)</label>
-                                    <input
-                                        id={`${item.id}-name-hu`}
-                                        type="text"
-                                        value={valueSource.name.hu}
-                                        readOnly={!isEdited}
-                                        onChange={(e) => handleTextChange(e, 'name', 'hu')}
-                                    />
-                                    <label htmlFor={`${item.id}-name-en`}>Név (EN)</label>
-                                    <input
-                                        id={`${item.id}-name-en`}
-                                        type="text"
-                                        value={valueSource.name.en}
-                                        readOnly={!isEdited}
-                                        onChange={(e) => handleTextChange(e, 'name', 'en')}
-                                    />
-                                    <label htmlFor={`${item.id}-varieties-hu`}>Variációk (HU)</label>
-                                    <input
-                                        id={`${item.id}-varieties-hu`}
-                                        type="text"
-                                        value={valueSource.varieties.hu}
-                                        readOnly={!isEdited}
-                                        onChange={(e) => handleTextChange(e, 'varieties', 'hu')}
-                                    />
-                                    <label htmlFor={`${item.id}-varieties-en`}>Variációk (EN)</label>
-                                    <input
-                                        id={`${item.id}-varieties-en`}
-                                        type="text"
-                                        value={valueSource.varieties.en}
-                                        readOnly={!isEdited}
-                                        onChange={(e) => handleTextChange(e, 'varieties', 'en')}
-                                    />
-                                    <label htmlFor={`${item.id}-price`}>Ár</label>
-                                    <input
-                                        id={`${item.id}-price`}
-                                        type="number"
-                                        value={valueSource.price}
-                                        readOnly={!isEdited}
-                                        onChange={handlePriceChange}
-                                    />
-                                    <button 
-                                        type="button" 
-                                        onClick={() => { isEdited 
-                                            ? handleSave(category.id) 
-                                            : startEditing(item) }}>{isEdited 
-                                                ? 'Mentés' 
-                                                : 'Szerkesztés'}
-                                    </button>
-                                </li>
+                                <MenuItem 
+                                    key={item.id}
+                                    item={item}
+                                    draft={draft}
+                                    editingItemId={editingItemId}
+                                    handleTextChange={handleTextChange}
+                                    handlePriceChange={handlePriceChange}
+                                    startEditing={startEditing}
+                                    handleSave={() => handleSave(category.id)}
+                                />
                             )
                         })}
                     </ul>
