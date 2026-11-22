@@ -11,6 +11,7 @@ const App = () => {
     const [draft, setDraft] = useState(null);
 
 
+
     // - - - - - - LOADING MENU FROM BACKEND WHEN ADMIN LOGGED IN
 
     const fetchMenu = async () => {
@@ -26,10 +27,10 @@ const App = () => {
         }
     };
 
+
+
     // - - - - - - SEND A PROTECTED (ADMIN) REQUEST TO THE BACKEND, WITH THE TOKEN
-    // method: "POST" | "PUT" | "DELETE"
-    // path:   e.g. "/api/categories/colds/items/colds-1"
-    // body:   the data to send (optional), e.g. { price: 1600 }
+
     const sendAdminRequest = async (method, path, body) => {
         const response = await fetch(`http://localhost:5000${path}`, {
             method: method,
@@ -50,6 +51,8 @@ const App = () => {
         return data;
     };
 
+
+
     // - - - - - - WHEN THE ADMIN LOGGED IN, FETCH THE MENU FROM BACKEND
     useEffect(() => {
         if (isAdmin) {
@@ -57,12 +60,16 @@ const App = () => {
         }
     }, [isAdmin]);
 
+
+
     // - - - - - - LOGIN COMPONENT - SUCCESS HANDLER
     const handleLoginSuccess = (userData, googleToken) => {
         setUser(userData);
         setToken(googleToken);
         setIsAdmin(true);
     };
+
+
 
     // - - - - - - LOGOUT HANDLER
     const handleLogout = () => {
@@ -74,22 +81,7 @@ const App = () => {
         setDraft(null);
     };
 
-    // - - - - - - TEMPORARY TEST: does the backend accept our token?
-    // Sets the price of "Jégkása" (colds / colds-1) to 1600 Ft
-    const handleTestRequest = async () => {
-        try {
-            const updatedItem = await sendAdminRequest(
-                "PUT",
-                "/api/categories/colds/items/colds-1",
-                { price: 1600 }
-            );
-            console.log("Sikeres mentés:", updatedItem);
-            fetchMenu(); // reload the menu, so the new price appears on the screen
-        } catch (error) {
-            console.error("Hiba:", error.message);
-            alert("Hiba: " + error.message);
-        }
-    };
+
 
     // - - - - - - START / END EDITING
     const startEditing = (item) => {
@@ -101,6 +93,29 @@ const App = () => {
         setEditingItemId(null);
         setDraft(null);
     }
+
+    const handleSave = async (categoryId) => {
+        if(draft.price === '' || isNaN(draft.price) || draft.price < 0) {
+            alert("Az ár mező nem lehet üres, és csak pozitív számot tartalmazhat!");
+            return;
+        }
+
+        try {
+            await sendAdminRequest(
+                "PUT",
+                `/api/categories/${categoryId}/items/${draft.id}`,
+                draft
+            );
+    
+            endEditing();
+            fetchMenu();
+        } catch (error) {
+            console.error("Hiba a mentés során:", error.message);
+            alert("Nem sikerült menteni. Ha régen jelentkeztél be, lépj ki és be újra.");
+        }
+    }
+
+
 
     const handlePriceChange = (e) => {
         setDraft({
@@ -119,11 +134,14 @@ const App = () => {
         })
     }
 
+
+
     // - - - - - - RENDERING THE LOGIN COMPONENT IF NOT ADMIN
     if (!isAdmin) {
         return <Login onLoginSuccess={handleLoginSuccess} />;
     }
-    console.log("draft:", draft);
+
+
 
     // - - - - - - RENDERING THE ADMIN PANEL WITH MENU CATEGORIES AND ITEMS
     return (
@@ -133,8 +151,6 @@ const App = () => {
                 <h1>SkyLounge - ADMIN</h1>
                 <p>Szia, <strong>{user?.name}</strong>!</p>
                 <button onClick={handleLogout}>Kijelentkezés</button>
-                {/* TEMPORARY TEST BUTTON - we will remove it later */}
-                <button onClick={handleTestRequest}>Teszt: Jégkása ára 1600 Ft</button>
             </header>
 
             {/* - - - - - - LOADING */}
@@ -143,6 +159,7 @@ const App = () => {
             {/* - - - - - - CATEGORIES AND ITEMS LIST */}
             {!loading && categories.map((category) => (
                 <section key={category.id}>
+
                     <h2>{category.name.hu} ({category.name.en})</h2>
                     <ul>
                         {category.items.map((item) => {
@@ -194,7 +211,7 @@ const App = () => {
                                     <button 
                                         type="button" 
                                         onClick={() => { isEdited 
-                                            ? endEditing() 
+                                            ? handleSave(category.id) 
                                             : startEditing(item) }}>{isEdited 
                                                 ? 'Mentés' 
                                                 : 'Szerkesztés'}
