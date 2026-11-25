@@ -10,7 +10,7 @@ const App = () => {
     const [loading, setLoading] = useState(false);
     const [editingItemId, setEditingItemId] = useState(null);
     const [draft, setDraft] = useState(null);
-    const [message, setMessage] = useState(null);
+    const [messages, setMessages] = useState([]);
 
 
 
@@ -81,7 +81,7 @@ const App = () => {
         setCategories([]);
         setEditingItemId(null);
         setDraft(null);
-        setMessage(null);
+        setMessages([]);
     };
 
 
@@ -148,13 +148,17 @@ const App = () => {
             )
             fetchMenu();
 
-            setMessage( item.visible 
-                ? `${item.name.hu} elrejtve.` 
-                : `${item.name.hu} megjelenítve.`
-            );
+            const message = {
+                id: Date.now(),
+                text: item.visible 
+                    ? `${item.name.hu} elrejtve.` 
+                    : `${item.name.hu} megjelenítve.`
+            }
+
+            setMessages( prevMessages => [message, ...prevMessages]);
 
             setTimeout(() => {
-                setMessage(null);
+                setMessages(prevMessages => prevMessages.filter(msg => msg.id !== message.id));
             }, 3000); 
 
         } catch (error) {
@@ -183,7 +187,9 @@ const App = () => {
             </header>
 
             {/* - - - - - - VISIBILITY CHANGE */}
-            {message && <p>{message}</p>}
+            {messages.map(message => (
+                <p key={message.id}>{message.text}</p>
+            ))}
 
             {/* - - - - - - LOADING */}
             {loading && <p>Betöltés...</p>}
