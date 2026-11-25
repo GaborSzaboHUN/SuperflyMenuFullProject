@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Login from "./Login";
 import MenuItem from "./MenuItem";
+import NewItemForm from "./NewItemForm";
 
 const App = () => {
     const [user, setUser] = useState(null);
@@ -11,6 +12,7 @@ const App = () => {
     const [editingItemId, setEditingItemId] = useState(null);
     const [draft, setDraft] = useState(null);
     const [messages, setMessages] = useState([]);
+    const [addingCategoryId, setAddingCategoryId] = useState(null);
 
 
 
@@ -82,6 +84,7 @@ const App = () => {
         setEditingItemId(null);
         setDraft(null);
         setMessages([]);
+        setAddingCategoryId(null);
     };
 
 
@@ -217,6 +220,22 @@ const App = () => {
                             )
                         })}
                     </ul>
+
+                    {
+                        addingCategoryId === category.id ? (
+                            <NewItemForm
+                                onCancel={() => setAddingCategoryId(null)}
+                            />
+                        ) : (
+                            <button 
+                                type="button"
+                                onClick={() => setAddingCategoryId(category.id)}
+                            >
+                                + Új tétel
+                            </button>
+                        )
+                    }
+
                 </section>
             ))}
         </main>

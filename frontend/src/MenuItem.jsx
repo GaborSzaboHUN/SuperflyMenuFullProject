@@ -10,7 +10,6 @@ const MenuItem = ({
     handleSave,
     handleToggleVisible,
 }) => {
-    console.log(item);
     const isEdited = editingItemId === item.id;
     const valueSource = isEdited ? draft : item;
 
