@@ -21,7 +21,7 @@ const App = () => {
     const fetchMenu = async () => {
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:5000/api/menu");
+            const response = await fetch("http://localhost:5050/api/menu");
             const data = await response.json();
             setCategories(data.categories || []);
         } catch (error) {
@@ -36,7 +36,7 @@ const App = () => {
     // - - - - - - SEND A PROTECTED (ADMIN) REQUEST TO THE BACKEND, WITH THE TOKEN
 
     const sendAdminRequest = async (method, path, body) => {
-        const response = await fetch(`http://localhost:5000${path}`, {
+        const response = await fetch(`http://localhost:5050${path}`, {
             method: method,
             headers: {
                 "Content-Type": "application/json",   // "the body is JSON"
@@ -172,6 +172,39 @@ const App = () => {
 
 
 
+    const handleAddNewProduct = async (categoryId, newItem) => {
+        if(newItem.price === '' || isNaN(newItem.price) || newItem.price < 0) {
+            alert("Az ár mező nem lehet üres, és csak pozitív számot tartalmazhat!");
+            return;
+        }
+
+        try {
+            await sendAdminRequest(
+                "POST",
+                `/api/categories/${categoryId}/items`,
+                newItem
+            )
+            fetchMenu();
+            setAddingCategoryId(null);
+
+            const message = {
+                id: Date.now(),
+                text: `${newItem.name.hu} hozzáadva.` 
+            }
+
+            setMessages( prevMessages => [message, ...prevMessages]);
+
+            setTimeout(() => {
+                setMessages(prevMessages => prevMessages.filter(msg => msg.id !== message.id));
+            }, 3000); 
+
+        } catch (error) {
+            console.error("Hiba az új tétel hozzáadásakor:", error.message);
+            alert("Nem sikerült hozzáadni az új tételt. Ha régen jelentkeztél be, lépj ki és be újra.");
+        }
+    }
+
+
     // - - - - - - RENDERING THE LOGIN COMPONENT IF NOT ADMIN
     if (!isAdmin) {
         return <Login onLoginSuccess={handleLoginSuccess} />;
@@ -225,6 +258,7 @@ const App = () => {
                         addingCategoryId === category.id ? (
                             <NewItemForm
                                 onCancel={() => setAddingCategoryId(null)}
+                                onAddItem={(item) => handleAddNewProduct(category.id, item)}
                             />
                         ) : (
                             <button 
